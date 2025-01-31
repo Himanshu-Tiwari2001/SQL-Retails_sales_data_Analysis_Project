@@ -3,8 +3,8 @@
 ## Project Overview
 
 **Project Title**: Retail Sales Analysis  
-**Level**: Beginner  
-**Database**: `p1_retail_db`
+**Level**: Intermediate
+**Database**: `SqlProjects`
 
 This project is designed to demonstrate SQL skills and techniques typically used by data analysts to explore, clean, and analyze retail sales data. The project involves setting up a retail sales database, performing exploratory data analysis (EDA), and answering specific business questions through SQL queries. This project is ideal for those who are starting their journey in data analysis and want to build a solid foundation in SQL.
 
@@ -19,26 +19,34 @@ This project is designed to demonstrate SQL skills and techniques typically used
 
 ### 1. Database Setup
 
-- **Database Creation**: The project starts by creating a database named `p1_retail_db`.
+- **Database Creation**: The project starts by creating a database named `SqlProjects`.
 - **Table Creation**: A table named `retail_sales` is created to store the sales data. The table structure includes columns for transaction ID, sale date, sale time, customer ID, gender, age, product category, quantity sold, price per unit, cost of goods sold (COGS), and total sale amount.
 
 ```sql
-CREATE DATABASE p1_retail_db;
+CREATE DATABASE SqlProjects;
 
-CREATE TABLE retail_sales
-(
-    transactions_id INT PRIMARY KEY,
-    sale_date DATE,	
-    sale_time TIME,
-    customer_id INT,	
-    gender VARCHAR(10),
-    age INT,
-    category VARCHAR(35),
-    quantity INT,
-    price_per_unit FLOAT,	
-    cogs FLOAT,
-    total_sale FLOAT
+CREATE TABLE `SQL_Retail_Sales_Analysis_utf` (
+    transactions_id DECIMAL(38 , 0 ) NOT NULL,
+    sale_date DATE NOT NULL,
+    sale_time TIME NOT NULL,
+    customer_id DECIMAL(38 , 0 ) NOT NULL,
+    gender VARCHAR(6) NOT NULL,
+    age DECIMAL(38 , 0 ),
+    category VARCHAR(11) NOT NULL,
+    quantiy DECIMAL(38 , 0 ),
+    price_per_unit DECIMAL(38 , 0 ),
+    cogs DECIMAL(38 , 2 ),
+    total_sale DECIMAL(38 , 0 )
 );
+```
+-** Laod the dataset into table 
+``` sql
+    LOAD DATA INFILE 'D:/SQL Projects/Sql Project 1 Retail Sales Analysis/SQL_Retail_Sales_Analysis_utf.csv'
+    INTO TABLE SQL_Retail_Sales_Analysis_utf
+    FIELDS TERMINATED BY ','
+    ENCLOSED BY '"'
+    LINES TERMINATED BY '\n'
+    IGNORE 1 ROWS;
 ```
 
 ### 2. Data Exploration & Cleaning
@@ -49,21 +57,44 @@ CREATE TABLE retail_sales
 - **Null Value Check**: Check for any null values in the dataset and delete records with missing data.
 
 ```sql
-SELECT COUNT(*) FROM retail_sales;
-SELECT COUNT(DISTINCT customer_id) FROM retail_sales;
-SELECT DISTINCT category FROM retail_sales;
-
-SELECT * FROM retail_sales
-WHERE 
-    sale_date IS NULL OR sale_time IS NULL OR customer_id IS NULL OR 
-    gender IS NULL OR age IS NULL OR category IS NULL OR 
-    quantity IS NULL OR price_per_unit IS NULL OR cogs IS NULL;
-
-DELETE FROM retail_sales
-WHERE 
-    sale_date IS NULL OR sale_time IS NULL OR customer_id IS NULL OR 
-    gender IS NULL OR age IS NULL OR category IS NULL OR 
-    quantity IS NULL OR price_per_unit IS NULL OR cogs IS NULL;
+    -- to view the table
+SELECT 
+    *
+FROM
+    SQL_Retail_Sales_Analysis_utf;
+SELECT 
+    COUNT(transactions_id)
+FROM
+    SQL_Retail_Sales_Analysis_utf;-- 1997 records
+   
+SELECT 
+    *
+FROM
+    SQL_Retail_Sales_Analysis_utf
+WHERE
+    transaction_id IS NULL
+        OR sale_date IS NULL
+        OR sale_time IS NULL
+        OR gender IS NULL
+        OR category IS NULL
+        OR quantity IS NULL
+        OR cogs IS NULL
+        OR total_sale IS NULL;
+    
+    -- if there is any null value in the table  then we will have to delete it 
+DELETE FROM SQL_Retail_Sales_Analysis_utf 
+WHERE
+    transaction_id IS NULL
+    OR sale_date IS NULL
+    OR sale_time IS NULL
+    OR gender IS NULL
+    OR category IS NULL
+    OR quantity IS NULL
+    OR cogs IS NULL
+    OR total_sale IS NULL;
+    
+    
+    rename table SQL_Retail_Sales_Analysis_utf to retail_sales;
 ```
 
 ### 3. Data Analysis & Findings
@@ -204,24 +235,17 @@ GROUP BY shift
 
 This project serves as a comprehensive introduction to SQL for data analysts, covering database setup, data cleaning, exploratory data analysis, and business-driven SQL queries. The findings from this project can help drive business decisions by understanding sales patterns, customer behavior, and product performance.
 
-## How to Use
 
-1. **Clone the Repository**: Clone this project repository from GitHub.
-2. **Set Up the Database**: Run the SQL scripts provided in the `database_setup.sql` file to create and populate the database.
-3. **Run the Queries**: Use the SQL queries provided in the `analysis_queries.sql` file to perform your analysis.
-4. **Explore and Modify**: Feel free to modify the queries to explore different aspects of the dataset or answer additional business questions.
 
-## Author - Zero Analyst
+## Author - Himanshu Tiwari
 
 This project is part of my portfolio, showcasing the SQL skills essential for data analyst roles. If you have any questions, feedback, or would like to collaborate, feel free to get in touch!
 
-### Stay Updated and Join the Community
 
-For more content on SQL, data analysis, and other data-related topics, make sure to follow me on social media and join our community:
 
-- **YouTube**: [Subscribe to my channel for tutorials and insights](https://www.youtube.com/@zero_analyst)
-- **Instagram**: [Follow me for daily tips and updates](https://www.instagram.com/zero_analyst/)
-- **LinkedIn**: [Connect with me professionally](https://www.linkedin.com/in/najirr)
-- **Discord**: [Join our community to learn and grow together](https://discord.gg/36h5f2Z5PK)
+
+- **Instagram**: [Follow me for daily tips and updates](https://www.instagram.com/virathimanshu99/)
+- **LinkedIn**: [Connect with me professionally](www.linkedin.com/in/himanshu-tiwari-3253b0214)
+  
 
 Thank you for your support, and I look forward to connecting with you!
