@@ -121,7 +121,7 @@ FROM
 
 The following SQL queries were developed to answer specific business questions:
 
- ** 1 Retrieve all category and their counts **
+ **1 Retrieve all category and their counts**
 ```sql
 SELECT 
     category, COUNT(category) AS count_of_category
@@ -130,7 +130,7 @@ FROM
 GROUP BY category;
 ```
 
- ** 2 Calculate the total money spent by customer  in particular year gender wise **
+ **2 Calculate the total money spent by customer  in particular year gender wise**
 ```sql
 SELECT 
     gender AS Gender,
@@ -141,7 +141,7 @@ FROM
 GROUP BY gender , EXTRACT(YEAR FROM sale_date);
 ```
 
-3. ** Calculate the total money spent by customer  in particular year in each categories **:
+3. **Calculate the total money spent by customer  in particular year in each categories**:
 ```sql
 SELECT 
     category AS Category,
@@ -166,7 +166,7 @@ GROUP BY gender , category , EXTRACT(YEAR FROM sale_date)
 ORDER BY year;
 ```
 
-5. ** Calculate the  quantity of each category sold out in particular year in sorted(desc) . **:
+5. **Calculate the  quantity of each category sold out in particular year in sorted(desc) .**:
 ```sql
 SELECT 
     category AS 'Catrgories List',
@@ -178,7 +178,7 @@ GROUP BY category , EXTRACT(YEAR FROM sale_date)
 ORDER BY SUM(quantity) DESC;
 ```
 
-6. ** Calculate the  quantity of each category sold out in particular year w.r.t gender. **:
+6. **Calculate the  quantity of each category sold out in particular year w.r.t gender.**:
 ```sql
 SELECT 
     gender AS Gender,
@@ -191,7 +191,7 @@ GROUP BY gender , category , EXTRACT(YEAR FROM sale_date)
 ORDER BY EXTRACT(YEAR FROM sale_date) DESC;
 ```
 
-7. ** Find the top 5 customer who shopping more often **:
+7. **Find the top 5 customer who shopping more often**:
 ```sql
 SELECT 
     customer_id, COUNT(transactions_id) AS 'No of transactions'
@@ -202,7 +202,7 @@ ORDER BY COUNT(transactions_id) DESC
 LIMIT 5;
 ```
 
-8. ** Retrieve all columns for sales made on '2022-11-05  **:
+8. **Retrieve all columns for sales made on '2022-11-05**:
 ```sql
 SELECT 
     *
@@ -212,7 +212,7 @@ WHERE
     sale_date = '2022-11-05';
 ```
 
-9. ** Retrieve all transactions where the category is 'Clothing' and the quantity sold is more than 4 in the month of Nov-2022 **:
+9. **Retrieve all transactions where the category is 'Clothing' and the quantity sold is more than 4 in the month of Nov-2022**:
 ```sql
 SELECT 
     *
@@ -223,7 +223,7 @@ WHERE
         AND sale_date LIKE '2022-11%';
 ```
 
-*** or ***
+***or***
 ```sql
 SELECT 
     *
@@ -235,7 +235,7 @@ WHERE
         AND quantity >= 4;
 ```
 
-10. ** Calculate the total sales (total_sale) for each category.   **:
+10. **Calculate the total sales (total_sale) for each category.**:
 ```sql
 SELECT 
     category,
@@ -245,7 +245,7 @@ FROM
     retail_sales
 GROUP BY 1;
 ```
-11. ** Find the average age of customers who purchased items from the 'Beauty' category. **
+11. **Find the average age of customers who purchased items from the 'Beauty' category.**
 ``` sql
 SELECT 
     category, AVG(age)
@@ -255,7 +255,7 @@ WHERE
     category = 'Beauty';
 ```
 
-12. ** Find the average age of customers who purchased items from the each category. **
+12. **Find the average age of customers who purchased items from the each category.**
 ``` sql
 SELECT 
     category, ROUND(AVG(age), 2) AS 'Average age'
@@ -263,7 +263,7 @@ FROM
     retail_sales
 GROUP BY 1;
 ```
-13. **Find top 10 transactions where the total_sale is greater than 1000. **
+13. **Find top 10 transactions where the total_sale is greater than 1000.**
 ```sql
 SELECT 
     *
@@ -285,7 +285,7 @@ FROM
     retail_sales
 GROUP BY category , gender;
 ```
-15. ** Calculate the average sale for each month. Find out best selling month in each year**
+15. **Calculate the average sale for each month. Find out best selling month in each year**
 ```sql
 SELECT 
     year,
@@ -315,7 +315,7 @@ GROUP BY 1
 ORDER BY 2 DESC
 LIMIT 5;
 ```
-17. ** Find the number of unique customers who purchased items from each category.**
+17. **Find the number of unique customers who purchased items from each category.**
  ```sql
 SELECT 
     category,
@@ -324,7 +324,7 @@ FROM
     retail_sales
 GROUP BY category;
 ```
-18. **Create each shift and number of orders (Example Morning <12, Afternoon Between 12 & 17, Evening >17) **
+18. **Create each shift and number of orders (Example Morning <12, Afternoon Between 12 & 17, Evening >17)**
 ``` sql
 WITH hourly_sale
 AS
@@ -344,7 +344,7 @@ FROM hourly_sale
 GROUP BY shift;
 ```
 
-19 ** Calculate the percentage contribution of each category to the total sales (total_sale) for a specific year 2022/2023.** 
+19 **Calculate the percentage contribution of each category to the total sales (total_sale) for a specific year 2022/2023.** 
 
 ```sql
 SELECT 
@@ -371,7 +371,7 @@ FROM
 WHERE
     EXTRACT(YEAR FROM sale_date) = 2022;
 ```
-20. ** Find the oldest customer who purchased from the 'Electronics' category and their transaction details.**
+20. **Find the oldest customer who purchased from the 'Electronics' category and their transaction details.**
 ``` sql
 SELECT 
     *
@@ -387,7 +387,7 @@ WHERE
             category = 'Electronics');
 ```
 
-21.**Retrieve all transactions where the total sale was above the average total sale for that category in the corresponding year. **
+21.**Retrieve all transactions where the total sale was above the average total sale for that category in the corresponding year.**
 ```sql
 SELECT 
     *
@@ -403,7 +403,7 @@ WHERE
                 AND EXTRACT(YEAR FROM sub.sale_date) = EXTRACT(YEAR FROM r.sale_date)
         GROUP BY sub.category , EXTRACT(YEAR FROM sub.sale_date));;
 ```
-22. ** Identify the least popular category in terms of total sales for each month and year.**
+22. **Identify the least popular category in terms of total sales for each month and year.**
 
 ``` sql
 SELECT 
@@ -417,7 +417,7 @@ GROUP BY category , Month , Year
 ORDER BY Total_sales ASC
 LIMIT 1;
 ```
-23. ** Calculate the year-over-year growth in total sales for each category.**
+23. **Calculate the year-over-year growth in total sales for each category.**
 ```sql
 SELECT 
     category,
@@ -428,7 +428,7 @@ FROM
 GROUP BY category , year;
 ```
 
-.**This query automatically explain the growth and declination in sales of each category  but the above query result needs to be analyse manually by comparing the particular  **
+.**This query automatically explain the growth and declination in sales of each category  but the above query result needs to be analyse manually by comparing the particular**
 
 ``` sql
 WITH category_sales AS (
@@ -462,7 +462,7 @@ FROM
 WHERE 
     previous_year_sales IS NOT NULL;
 ```
-24. ** Identify transactions where the quantity sold exceeds the average quantity sold per transaction for the corresponding category.**
+24. **Identify transactions where the quantity sold exceeds the average quantity sold per transaction for the corresponding category.**
 ``` sql
 SELECT 
     t1.category,
@@ -483,7 +483,7 @@ FROM
 WHERE
     t1.quantity > t2.avg_quantity;
 ```
-25. ** Identify customers who made multiple transactions on the same day and retrieve their details.**
+25. **Identify customers who made multiple transactions on the same day and retrieve their details.**
 
 ``` sql
   SELECT 
@@ -528,7 +528,7 @@ FROM
 WHERE 
     ranked = 1;
 ```
-27. **  Calculate the customer retention rate (percentage of customers who made transactions in multiple years).**
+27. **Calculate the customer retention rate (percentage of customers who made transactions in multiple years).**
 ```sql
 WITH CustomerYearCount AS (
     SELECT 
@@ -550,7 +550,7 @@ SELECT
 FROM 
     RetainedCustomers, TotalCustomers;
 ```
-28 **  Calculate the average age of customers for each category and year and rank the categories by age group.**
+28 **Calculate the average age of customers for each category and year and rank the categories by age group.**
 ``` sql
 WITH AvgAge AS (
     SELECT 
@@ -570,7 +570,7 @@ SELECT
 FROM 
     AvgAge;
 ```
-29. ** Identify the category with the highest markup (difference between price per unit and cogs) and list the top 3 transactions for that category. **
+29. **Identify the category with the highest markup (difference between price per unit and cogs) and list the top 3 transactions for that category.**
 ```sql
 WITH Markup AS (
     SELECT 
@@ -594,7 +594,7 @@ ORDER BY
     markup DESC
 LIMIT 3;
 ```
-30. **Determine the total number of transactions that occurred during the weekend (Saturday and Sunday). **
+30. **Determine the total number of transactions that occurred during the weekend (Saturday and Sunday).**
 ```sql
 SELECT 
     COUNT(*) AS total_weekend_transactions
@@ -603,7 +603,7 @@ FROM
 WHERE 
     DAYOFWEEK(sale_date) IN (1, 7); -- 1 = Sunday, 7 = Saturday
 ```
-31. **Retrieve the month with the highest sales (total_sale) for the top 3 categories with the highest annual total sales. **
+31. **Retrieve the month with the highest sales (total_sale) for the top 3 categories with the highest annual total sales.**
     
 ```sql
 WITH AnnualSales AS (
@@ -639,7 +639,7 @@ FROM
 GROUP BY 
     category, year_Months;
 ```
-32. **Find transactions where the sale time is within the top 5 busiest hours across the entire dataset. **
+32. **Find transactions where the sale time is within the top 5 busiest hours across the entire dataset.**
 
 ```sql
 WITH HourlySales AS (
@@ -661,7 +661,7 @@ FROM
 WHERE 
     HOUR(sale_time) IN (SELECT sale_hour FROM HourlySales);
 ```
-33. ** Calculate the average total sale per transaction for customers aged between 18 and 25 across all categories.**
+33. **Calculate the average total sale per transaction for customers aged between 18 and 25 across all categories.**
 
 ```sql
 SELECT 
@@ -675,7 +675,7 @@ GROUP BY
     category;
 ```
 
-33. **Retrieve all transactions where the total sale exceeds three times the cogs. **
+33. **Retrieve all transactions where the total sale exceeds three times the cogs.**
 
 ``` sql
 SELECT 
@@ -685,7 +685,7 @@ FROM
 WHERE 
     total_sale > 3 * cogs;
 ```
-34. **Identify the customers who contributed to the top 10% of total sales for the entire dataset. **
+34. **Identify the customers who contributed to the top 10% of total sales for the entire dataset.**
 ```sql
 WITH TotalSales AS (
     SELECT 
@@ -710,7 +710,7 @@ FROM
 WHERE 
     customer_sales >= (SELECT threshold FROM Top10PercentThreshold);
 ```
-35. ** Calculate the average sales per unit (price_per_unit) for each category in the dataset.**
+35. **Calculate the average sales per unit (price_per_unit) for each category in the dataset.**
 
 ```sql
 SELECT 
@@ -745,7 +745,7 @@ GROUP BY
     category, sale_hour;
 ```
 
-37. ** Find all transactions where the customer's age is greater than the average age of customers for their respective gender.**
+37. **Find all transactions where the customer's age is greater than the average age of customers for their respective gender.**
 
  ```sql
 WITH AvgAgeByGender AS (
