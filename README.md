@@ -39,7 +39,7 @@ CREATE TABLE `SQL_Retail_Sales_Analysis_utf` (
     total_sale DECIMAL(38 , 0 )
 );
 ```
--** Laod the dataset into table 
+** Laod the dataset into table **
 ``` sql
     LOAD DATA INFILE 'D:/SQL Projects/Sql Project 1 Retail Sales Analysis/SQL_Retail_Sales_Analysis_utf.csv'
     INTO TABLE SQL_Retail_Sales_Analysis_utf
@@ -121,7 +121,7 @@ FROM
 
 The following SQL queries were developed to answer specific business questions:
 
-1. ** Retrieve all category and their counts **:
+ ** 1 Retrieve all category and their counts **
 ```sql
 SELECT 
     category, COUNT(category) AS count_of_category
@@ -130,7 +130,7 @@ FROM
 GROUP BY category;
 ```
 
-2. **Calculate the total money spent by customer  in particular year gender wise**:
+ ** 2 Calculate the total money spent by customer  in particular year gender wise **
 ```sql
 SELECT 
     gender AS Gender,
