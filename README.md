@@ -791,7 +791,7 @@ This project serves as a comprehensive introduction to SQL for data analysts, co
 
 ## Author - Himanshu Tiwari
 
-This project is part of my portfolio, showcasing the SQL skills essential for data analyst roles. If you have any questions, feedback, or would like to collaborate, feel free to get in touch!
+This project is part of my portfolio, showcasing the SQL skills essential for data analyst roles.
 
 
 
@@ -800,4 +800,4 @@ This project is part of my portfolio, showcasing the SQL skills essential for da
 - **LinkedIn**: [Connect with me professionally](www.linkedin.com/in/himanshu-tiwari-3253b0214)
   
 
-Thank you for your support, and I look forward to connecting with you!
+I look forward to connecting with you!
