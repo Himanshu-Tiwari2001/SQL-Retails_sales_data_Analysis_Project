@@ -62,6 +62,9 @@ SELECT
     *
 FROM
     SQL_Retail_Sales_Analysis_utf;
+
+
+
 SELECT 
     COUNT(transactions_id)
 FROM
@@ -97,13 +100,14 @@ WHERE
     rename table SQL_Retail_Sales_Analysis_utf to retail_sales;
 ```
 
+** Determine the total number of records in the dataset. **
 ``` sql
 SELECT 
     COUNT(*) AS total_sale
 FROM
     retail_sales;
 ```
-** How many uniuque customers we have ?**
+** How many uniuque customers we have ? **
 ```sql
 SELECT 
     COUNT(DISTINCT customer_id) AS total_sale
@@ -117,7 +121,7 @@ FROM
 
 The following SQL queries were developed to answer specific business questions:
 
-1. **Retrieve all category and their counts**:
+1. ** Retrieve all category and their counts **:
 ```sql
 SELECT 
     category, COUNT(category) AS count_of_category
@@ -137,7 +141,7 @@ FROM
 GROUP BY gender , EXTRACT(YEAR FROM sale_date);
 ```
 
-3. **Calculate the total money spent by customer  in particular year in each categories **:
+3. ** Calculate the total money spent by customer  in particular year in each categories **:
 ```sql
 SELECT 
     category AS Category,
@@ -162,7 +166,7 @@ GROUP BY gender , category , EXTRACT(YEAR FROM sale_date)
 ORDER BY year;
 ```
 
-5. **Calculate the  quantity of each category sold out in particular year in sorted(desc) .**:
+5. ** Calculate the  quantity of each category sold out in particular year in sorted(desc) . **:
 ```sql
 SELECT 
     category AS 'Catrgories List',
@@ -174,7 +178,7 @@ GROUP BY category , EXTRACT(YEAR FROM sale_date)
 ORDER BY SUM(quantity) DESC;
 ```
 
-6. **Calculate the  quantity of each category sold out in particular year w.r.t gender.**:
+6. ** Calculate the  quantity of each category sold out in particular year w.r.t gender. **:
 ```sql
 SELECT 
     gender AS Gender,
@@ -187,7 +191,7 @@ GROUP BY gender , category , EXTRACT(YEAR FROM sale_date)
 ORDER BY EXTRACT(YEAR FROM sale_date) DESC;
 ```
 
-7. **Find the top 5 customer who shopping more often**:
+7. ** Find the top 5 customer who shopping more often **:
 ```sql
 SELECT 
     customer_id, COUNT(transactions_id) AS 'No of transactions'
@@ -198,7 +202,7 @@ ORDER BY COUNT(transactions_id) DESC
 LIMIT 5;
 ```
 
-8. **Retrieve all columns for sales made on '2022-11-05 **:
+8. ** Retrieve all columns for sales made on '2022-11-05  **:
 ```sql
 SELECT 
     *
@@ -208,7 +212,7 @@ WHERE
     sale_date = '2022-11-05';
 ```
 
-9. **Retrieve all transactions where the category is 'Clothing' and the quantity sold is more than 4 in the month of Nov-2022**:
+9. ** Retrieve all transactions where the category is 'Clothing' and the quantity sold is more than 4 in the month of Nov-2022 **:
 ```sql
 SELECT 
     *
@@ -231,7 +235,7 @@ WHERE
         AND quantity >= 4;
 ```
 
-10. **Calculate the total sales (total_sale) for each category.   **:
+10. ** Calculate the total sales (total_sale) for each category.   **:
 ```sql
 SELECT 
     category,
@@ -241,7 +245,7 @@ FROM
     retail_sales
 GROUP BY 1;
 ```
-11. **Find the average age of customers who purchased items from the 'Beauty' category. **
+11. ** Find the average age of customers who purchased items from the 'Beauty' category. **
 ``` sql
 SELECT 
     category, AVG(age)
@@ -251,7 +255,7 @@ WHERE
     category = 'Beauty';
 ```
 
-12. **Find the average age of customers who purchased items from the each category. **
+12. ** Find the average age of customers who purchased items from the each category. **
 ``` sql
 SELECT 
     category, ROUND(AVG(age), 2) AS 'Average age'
